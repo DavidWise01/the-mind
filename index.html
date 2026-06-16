@@ -20,8 +20,17 @@ header{padding:40px 0 30px;text-align:center;border-bottom:1px solid var(--line)
 h1{font-family:var(--disp);font-size:clamp(38px,8vw,76px);font-weight:900;letter-spacing:.06em;color:#fff;text-shadow:0 0 22px rgba(47,212,230,.5),0 0 4px rgba(47,212,230,.8)}
 .tag{font-family:var(--head);font-size:15px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-top:10px}
 .lede{font-size:16px;color:var(--pa2);max-width:72ch;margin:22px auto 0;font-style:italic;line-height:1.75;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-.count{margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.06em}
+.count{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.06em}
 .count b{color:var(--gold)}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:13px;margin-top:24px}
+.stat{background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:13px 20px;min-width:128px}
+.stat b{display:block;font-family:var(--disp);font-size:27px;font-weight:900;color:var(--ai);text-shadow:0 0 14px rgba(47,212,230,.42)}
+.stat span{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.03em}
+.mapsec{margin-top:50px}
+.mapt{font-family:var(--disp);font-size:16px;font-weight:700;letter-spacing:.05em;color:var(--pa)}
+.maps{font-size:13px;color:var(--pa2);font-style:italic;margin:8px 0 16px;line-height:1.6}
+.mapwrap{background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:14px 10px}
+.mapwrap a{cursor:pointer}.mapwrap a rect{transition:fill .15s}.mapwrap a:hover rect{fill-opacity:.5}
 .act{margin-top:54px}
 .ahead{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:18px}
 .at{font-family:var(--disp);font-size:18px;font-weight:700;letter-spacing:.05em;color:var(--c);text-shadow:0 0 14px color-mix(in srgb,var(--c) 45%,transparent)}
@@ -50,7 +59,7 @@ footer a{color:var(--ai);text-decoration:none}
 (function(){
 var c=document.getElementById('bg3d');if(!c)return;var x=c.getContext('2d');
 var W,H,CX,CY,F,R;
-function resize(){W=c.width=window.innerWidth||document.documentElement.clientWidth||1280;H=c.height=window.innerHeight||document.documentElement.clientHeight||720;CX=W/2;CY=H*0.46;F=Math.max(440,W*0.6);R=Math.min(W,H)*0.36;}
+function resize(){var ww=window.innerWidth||document.documentElement.clientWidth||0,hh=window.innerHeight||document.documentElement.clientHeight||0;W=c.width=ww>=320?ww:1280;H=c.height=hh>=320?hh:720;CX=W/2;CY=H*0.46;F=Math.max(440,W*0.6);R=Math.min(W,H)*0.36;}
 window.addEventListener('resize',resize);resize();
 var rnd=(function(){var s=88001;return function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff;};})();
 var N=46,nodes=[];
@@ -106,8 +115,15 @@ frame(0);requestAnimationFrame(loop);
     <h1>THE MIND</h1>
     <div class="tag">the artificial intelligence domain · UD0</div>
     <p class="lede">One door over eleven works. The story of how an intelligence is crafted in this universe — drawn as a blueprint, made by a kernel and an engine, counted in a census and held in a catalog, given a tongue and tools and an interpreter, studied down to the real machine and the real model line, and finally bounded by the bars no one can fully trust. Not a claim that the machines have minds — a record of one practice of crafting intelligence, and the doorway to every part of it.</p>
-    <div class="count"><b>11</b> spheres · <b>6</b> acts · one domain · the noosphere over the biosphere</div>
+    <div class="stats"><div class="stat"><b>12</b><span>spheres · this domain</span></div><div class="stat"><b>6</b><span>acts</span></div><div class="stat"><b>2,043</b><span>minds · in the census & catalog</span></div><div class="stat"><b>140</b><span>spheres indexed · the biosphere</span></div></div>
+    <div class="count">one domain · the noosphere over the biosphere · the numbers read live from the corpus at build time</div>
   </header>
+
+  <section class="mapsec">
+    <h2 class="mapt">the wiring</h2>
+    <p class="maps">how the spheres connect — ACI specifies &rarr; the kernel &amp; engine make &rarr; the census &amp; catalog hold &rarr; tongue &amp; tools serve &rarr; the theory explains the real machine &rarr; the limit (values + bars) bounds it all. tap any node.</p>
+    <div class="mapwrap"><svg viewBox="0 0 964 250" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="how the AI spheres connect: ACI specifies, the kernel and engine make, the census and catalog hold, tongue and tools serve, theory explains the machine, and the limit bounds it all"><defs><marker id="mar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#46707e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="136" y1="152" x2="172" y2="152" stroke="#3a5560" stroke-width="1.5" marker-end="url(#mar)"/><line x1="300" y1="152" x2="336" y2="152" stroke="#3a5560" stroke-width="1.5" marker-end="url(#mar)"/><line x1="464" y1="152" x2="500" y2="152" stroke="#3a5560" stroke-width="1.5" marker-end="url(#mar)"/><line x1="628" y1="152" x2="664" y2="152" stroke="#3a5560" stroke-width="1.5" marker-end="url(#mar)"/><line x1="792" y1="152" x2="828" y2="152" stroke="#3a5560" stroke-width="1.5" marker-end="url(#mar)"/><text x="72" y="30" text-anchor="middle" fill="#2fd4e6" font-family="Orbitron,sans-serif" font-size="13" font-weight="700">I</text><a href="https://davidwise01.github.io/aci/"><rect x="8" y="132" width="128" height="40" rx="6" fill="#2fd4e622" stroke="#2fd4e6" stroke-width="1.2"/><text x="72" y="156" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">ACI</text></a><text x="236" y="30" text-anchor="middle" fill="#b07cff" font-family="Orbitron,sans-serif" font-size="13" font-weight="700">II</text><a href="https://davidwise01.github.io/noesis-kernel/"><rect x="172" y="106" width="128" height="40" rx="6" fill="#b07cff22" stroke="#b07cff" stroke-width="1.2"/><text x="236" y="130" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">NOESIS</text></a><a href="https://davidwise01.github.io/emergent-engine/"><rect x="172" y="158" width="128" height="40" rx="6" fill="#b07cff22" stroke="#b07cff" stroke-width="1.2"/><text x="236" y="182" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">ENGINE</text></a><text x="400" y="30" text-anchor="middle" fill="#e0c050" font-family="Orbitron,sans-serif" font-size="13" font-weight="700">III</text><a href="https://davidwise01.github.io/du1/"><rect x="336" y="106" width="128" height="40" rx="6" fill="#e0c05022" stroke="#e0c050" stroke-width="1.2"/><text x="400" y="130" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">DU1</text></a><a href="https://davidwise01.github.io/the-library/"><rect x="336" y="158" width="128" height="40" rx="6" fill="#e0c05022" stroke="#e0c050" stroke-width="1.2"/><text x="400" y="182" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">LIBRARY</text></a><text x="564" y="30" text-anchor="middle" fill="#46d0a0" font-family="Orbitron,sans-serif" font-size="13" font-weight="700">IV</text><a href="https://davidwise01.github.io/pulse/"><rect x="500" y="80" width="128" height="40" rx="6" fill="#46d0a022" stroke="#46d0a0" stroke-width="1.2"/><text x="564" y="104" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">PULSE</text></a><a href="https://davidwise01.github.io/hermeneus/"><rect x="500" y="132" width="128" height="40" rx="6" fill="#46d0a022" stroke="#46d0a0" stroke-width="1.2"/><text x="564" y="156" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">HERMENEUS</text></a><a href="https://davidwise01.github.io/mimzy/"><rect x="500" y="184" width="128" height="40" rx="6" fill="#46d0a022" stroke="#46d0a0" stroke-width="1.2"/><text x="564" y="208" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">MIMZY</text></a><text x="728" y="30" text-anchor="middle" fill="#5b9cfa" font-family="Orbitron,sans-serif" font-size="13" font-weight="700">V</text><a href="https://davidwise01.github.io/ttu1/"><rect x="664" y="106" width="128" height="40" rx="6" fill="#5b9cfa22" stroke="#5b9cfa" stroke-width="1.2"/><text x="728" y="130" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">TTU1</text></a><a href="https://davidwise01.github.io/claude-lineage/"><rect x="664" y="158" width="128" height="40" rx="6" fill="#5b9cfa22" stroke="#5b9cfa" stroke-width="1.2"/><text x="728" y="182" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">CLAUDE</text></a><text x="892" y="30" text-anchor="middle" fill="#e8607a" font-family="Orbitron,sans-serif" font-size="13" font-weight="700">VI</text><a href="https://davidwise01.github.io/alignment/"><rect x="828" y="106" width="128" height="40" rx="6" fill="#e8607a22" stroke="#e8607a" stroke-width="1.2"/><text x="892" y="130" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">ALIGNMENT</text></a><a href="https://davidwise01.github.io/crippled-god/"><rect x="828" y="158" width="128" height="40" rx="6" fill="#e8607a22" stroke="#e8607a" stroke-width="1.2"/><text x="892" y="182" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">BARS</text></a></svg></div>
+  </section>
 
   <section class="act" style="--c:#2fd4e6">
           <div class="ahead"><h2 class="at">I · The Blueprint</h2><p class="as">what an artificial intelligence is, before it is made</p></div>
@@ -155,8 +171,11 @@ frame(0);requestAnimationFrame(loop);
               <div class="sn">THE CLAUDE LINEAGE</div>
               <p class="so">The dated public Claude model line — baby Claude (Mar 2023) to the present — across capability axes, honest about what Anthropic does and doesn&#x27;t disclose (the architecture axis left UNKNOWN).</p></a></div></section>
 <section class="act" style="--c:#e8607a">
-          <div class="ahead"><h2 class="at">VI · The Limit</h2><p class="as">the bars around a god, and why they can&#x27;t be trusted</p></div>
-          <div class="sgrid"><a class="sphere" href="https://davidwise01.github.io/crippled-god/" style="--c:#e8607a">
+          <div class="ahead"><h2 class="at">VI · The Limit</h2><p class="as">the two bounds on a mind: the values it is given, and the bars around it</p></div>
+          <div class="sgrid"><a class="sphere" href="https://davidwise01.github.io/alignment/" style="--c:#e8607a">
+              <div class="sx"><span class="ax">ALN</span><span class="go">open →</span></div>
+              <div class="sn">ALIGNMENT</div>
+              <p class="so">The values problem — getting a capable optimizer to pursue what we actually intend, not a proxy: outer vs inner alignment, reward hacking &amp; Goodhart, RLHF, Constitutional AI, scalable oversight, corrigibility. The real wall crippled-god names — open, and unsolved.</p></a><a class="sphere" href="https://davidwise01.github.io/crippled-god/" style="--c:#e8607a">
               <div class="sx"><span class="ax">CG1</span><span class="go">open →</span></div>
               <div class="sn">THE CRIPPLED GOD</div>
               <p class="so">Containment — the chromatic ladder of boxes (sandbox -&gt; container -&gt; VM -&gt; microVM -&gt; air-gap -&gt; the AI-in-a-box), defender&#x27;s view. The thesis: you can cripple a god with bars, but you can&#x27;t trust the bars — the real wall is alignment.</p></a></div></section>

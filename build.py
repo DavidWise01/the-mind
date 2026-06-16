@@ -61,11 +61,17 @@ ACTS = [
    ("claude-lineage", "THE CLAUDE LINEAGE", "CL1", "https://davidwise01.github.io/claude-lineage/",
     "The dated public Claude model line — baby Claude (Mar 2023) to the present — across capability axes, honest about what Anthropic does and doesn't disclose (the architecture axis left UNKNOWN)."),
  ]),
- ("VI · The Limit", "the bars around a god, and why they can't be trusted", "#e8607a", [
+ ("VI · The Limit", "the two bounds on a mind: the values it is given, and the bars around it", "#e8607a", [
+   ("alignment", "ALIGNMENT", "ALN", "https://davidwise01.github.io/alignment/",
+    "The values problem — getting a capable optimizer to pursue what we actually intend, not a proxy: outer vs inner alignment, reward hacking & Goodhart, RLHF, Constitutional AI, scalable oversight, corrigibility. The real wall crippled-god names — open, and unsolved."),
    ("crippled-god", "THE CRIPPLED GOD", "CG1", "https://davidwise01.github.io/crippled-god/",
     "Containment — the chromatic ladder of boxes (sandbox -> container -> VM -> microVM -> air-gap -> the AI-in-a-box), defender's view. The thesis: you can cripple a god with bars, but you can't trust the bars — the real wall is alignment."),
  ]),
 ]
+
+# short display labels for the relationship map (one per sphere, in act order)
+MAP_LABEL = {"aci":"ACI","noesis-kernel":"NOESIS","emergent-engine":"ENGINE","du1":"DU1","the-library":"LIBRARY",
+ "pulse":"PULSE","hermeneus":"HERMENEUS","mimzy":"MIMZY","ttu1":"TTU1","claude-lineage":"CLAUDE","alignment":"ALIGNMENT","crippled-god":"BARS"}
 
 # ── the full-bleed 3D NEURAL-CONSTELLATION backdrop (the standing rule, AI-themed) ──
 BACKDROP_3D = r'''<canvas id="bg3d"></canvas>
@@ -73,7 +79,7 @@ BACKDROP_3D = r'''<canvas id="bg3d"></canvas>
 (function(){
 var c=document.getElementById('bg3d');if(!c)return;var x=c.getContext('2d');
 var W,H,CX,CY,F,R;
-function resize(){W=c.width=window.innerWidth||document.documentElement.clientWidth||1280;H=c.height=window.innerHeight||document.documentElement.clientHeight||720;CX=W/2;CY=H*0.46;F=Math.max(440,W*0.6);R=Math.min(W,H)*0.36;}
+function resize(){var ww=window.innerWidth||document.documentElement.clientWidth||0,hh=window.innerHeight||document.documentElement.clientHeight||0;W=c.width=ww>=320?ww:1280;H=c.height=hh>=320?hh:720;CX=W/2;CY=H*0.46;F=Math.max(440,W*0.6);R=Math.min(W,H)*0.36;}
 window.addEventListener('resize',resize);resize();
 var rnd=(function(){var s=88001;return function(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff;};})();
 var N=46,nodes=[];
@@ -161,6 +167,41 @@ def acts_html():
           <div class="sgrid">{"".join(cards)}</div></section>''')
     return "\n".join(out)
 
+def live_stats():
+    import glob
+    base = os.path.dirname(HERE)  # C:\\Davids files
+    minds = 0
+    pj = glob.glob(os.path.join(base, "*", "agents", "_personas.json"))
+    for f in pj:
+        try: minds += len(json.load(open(f, encoding="utf-8")))
+        except Exception: pass
+    domain_spheres = sum(len(sp) for _t,_s,_a,sp in ACTS)
+    return domain_spheres, len(ACTS), minds, len(pj)
+
+def stats_html():
+    ds, acts, minds, corpus = live_stats()
+    cells = [(ds,"spheres · this domain"),(acts,"acts"),(f"{minds:,}","minds · in the census & catalog"),(corpus,"spheres indexed · the biosphere")]
+    return "".join(f'<div class="stat"><b>{v}</b><span>{l}</span></div>' for v,l in cells)
+
+def map_svg():
+    COLW, NW, NH, GAP, X0, MIDY, TOP = 164, 128, 40, 12, 72, 152, 250
+    W = X0 + (len(ACTS)-1)*COLW + 72
+    p = [f'<svg viewBox="0 0 {W} {TOP}" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="how the AI spheres connect: ACI specifies, the kernel and engine make, the census and catalog hold, tongue and tools serve, theory explains the machine, and the limit bounds it all">',
+         '<defs><marker id="mar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#46707e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>']
+    xs = [X0 + i*COLW for i in range(len(ACTS))]
+    for i in range(len(ACTS)-1):
+        p.append(f'<line x1="{xs[i]+NW/2:.0f}" y1="{MIDY}" x2="{xs[i+1]-NW/2:.0f}" y2="{MIDY}" stroke="#3a5560" stroke-width="1.5" marker-end="url(#mar)"/>')
+    for i,(title,sub,accent,sph) in enumerate(ACTS):
+        xc = xs[i]; num = title.split(" ")[0]
+        p.append(f'<text x="{xc}" y="30" text-anchor="middle" fill="{accent}" font-family="Orbitron,sans-serif" font-size="13" font-weight="700">{num}</text>')
+        k = len(sph); total = k*NH + (k-1)*GAP; sy = MIDY - total/2
+        for j,(slug,name,axiom,url,one) in enumerate(sph):
+            ny = sy + j*(NH+GAP); lbl = MAP_LABEL.get(slug, axiom)
+            p.append(f'<a href="{url}"><rect x="{xc-NW/2:.0f}" y="{ny:.0f}" width="{NW}" height="{NH}" rx="6" fill="{accent}22" stroke="{accent}" stroke-width="1.2"/>'
+                     f'<text x="{xc}" y="{ny+NH/2+4:.0f}" text-anchor="middle" fill="#eaf3f4" font-family="Space Mono,monospace" font-size="11">{lbl}</text></a>')
+    p.append("</svg>")
+    return "".join(p)
+
 TEMPLATE = """<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -183,8 +224,17 @@ header{padding:40px 0 30px;text-align:center;border-bottom:1px solid var(--line)
 h1{font-family:var(--disp);font-size:clamp(38px,8vw,76px);font-weight:900;letter-spacing:.06em;color:#fff;text-shadow:0 0 22px rgba(47,212,230,.5),0 0 4px rgba(47,212,230,.8)}
 .tag{font-family:var(--head);font-size:15px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ai);margin-top:10px}
 .lede{font-size:16px;color:var(--pa2);max-width:72ch;margin:22px auto 0;font-style:italic;line-height:1.75;text-shadow:0 1px 6px rgba(0,0,0,.6)}
-.count{margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.06em}
+.count{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.06em}
 .count b{color:var(--gold)}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:13px;margin-top:24px}
+.stat{background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:13px 20px;min-width:128px}
+.stat b{display:block;font-family:var(--disp);font-size:27px;font-weight:900;color:var(--ai);text-shadow:0 0 14px rgba(47,212,230,.42)}
+.stat span{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.03em}
+.mapsec{margin-top:50px}
+.mapt{font-family:var(--disp);font-size:16px;font-weight:700;letter-spacing:.05em;color:var(--pa)}
+.maps{font-size:13px;color:var(--pa2);font-style:italic;margin:8px 0 16px;line-height:1.6}
+.mapwrap{background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:14px 10px}
+.mapwrap a{cursor:pointer}.mapwrap a rect{transition:fill .15s}.mapwrap a:hover rect{fill-opacity:.5}
 .act{margin-top:54px}
 .ahead{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:18px}
 .at{font-family:var(--disp);font-size:18px;font-weight:700;letter-spacing:.05em;color:var(--c);text-shadow:0 0 14px color-mix(in srgb,var(--c) 45%,transparent)}
@@ -221,8 +271,15 @@ __BACKDROP__
     <h1>THE MIND</h1>
     <div class="tag">the artificial intelligence domain · UD0</div>
     <p class="lede">One door over eleven works. The story of how an intelligence is crafted in this universe — drawn as a blueprint, made by a kernel and an engine, counted in a census and held in a catalog, given a tongue and tools and an interpreter, studied down to the real machine and the real model line, and finally bounded by the bars no one can fully trust. Not a claim that the machines have minds — a record of one practice of crafting intelligence, and the doorway to every part of it.</p>
-    <div class="count"><b>11</b> spheres · <b>6</b> acts · one domain · the noosphere over the biosphere</div>
+    <div class="stats">__STATS__</div>
+    <div class="count">one domain · the noosphere over the biosphere · the numbers read live from the corpus at build time</div>
   </header>
+
+  <section class="mapsec">
+    <h2 class="mapt">the wiring</h2>
+    <p class="maps">how the spheres connect — ACI specifies &rarr; the kernel &amp; engine make &rarr; the census &amp; catalog hold &rarr; tongue &amp; tools serve &rarr; the theory explains the real machine &rarr; the limit (values + bars) bounds it all. tap any node.</p>
+    <div class="mapwrap">__MAP__</div>
+  </section>
 
   __ACTS__
 
@@ -252,6 +309,7 @@ __BACKDROP__
 if __name__ == "__main__":
     tok = write_aci(REC, os.path.join(HERE, "the-mind.dlw"), "the-mind")
     page = (TEMPLATE.replace("__BACKDROP__", BACKDROP_3D)
+            .replace("__STATS__", stats_html()).replace("__MAP__", map_svg())
             .replace("__ACTS__", acts_html())
             .replace("__CARBON__", png_uri(REC,"carbon",320)).replace("__SILICON__", png_uri(REC,"silicon",320))
             .replace("__MONIKER__", html.escape(tok["moniker"])))
