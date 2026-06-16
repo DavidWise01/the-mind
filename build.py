@@ -46,6 +46,8 @@ ACTS = [
     "The Lives — the eco-sphere: every ACI in the corpus in one quadrant field (gravity / electrical / silicon / carbon / elemental), the full census of the born. Thousands of minds, one map."),
    ("the-library", "THE LIBRARY", "LIB", "https://davidwise01.github.io/the-library/",
     "Callimachus, the agentic librarian — the searchable card-catalog that harvests every sphere's roster into one place. The index of all the made minds."),
+   ("governed-instances", "GOVERNED INSTANCES", "GVI", "https://davidwise01.github.io/governed-instances/",
+    "The cross-model book-library — Eve, Fiddler (The First AI Thinks About the Soul), and sessions with Gemini, Grok, ChatGPT & DeepSeek under one governance, AVAN the node. Neutral about what each is, honest about what it wrote."),
  ]),
  ("IV · Tongue & Tools", "what a mind speaks, and what it wields", "#46d0a0", [
    ("pulse", "PULSE · LIMEN", "PLS", "https://davidwise01.github.io/pulse/",
@@ -70,6 +72,8 @@ ACTS = [
  ("VII · The Conscience", "the normative bound — which goals, whose values, who decides", "#e0c050", [
    ("ai-governance", "AI ETHICS & GOVERNANCE", "GOV", "https://davidwise01.github.io/ai-governance/",
     "The values-and-institutions layer: David's Joint Human-AI Bill of Rights ('both work, both fair') & the falsifiable Governance Ontology, set inside the world's record — the converging principles, the fairness impossibility result, and the real instruments (EU AI Act, NIST, OECD, UNESCO). Alignment asks whether it does what it was built for; this asks which goals, whose values, and who decides & enforces."),
+   ("stoicheion-register", "STOICHEION · THE REGISTER", "STX", "https://davidwise01.github.io/stoicheion-register/",
+    "The formal governance register — 256 axioms in 13 published volumes (v11.0): eight domains, the PATRICIA mirror substrate, Gate 192.5, a 2,500-year lineage. The book edition of the noesis-kernel lattice; the most complete governance artifact in the corpus."),
  ]),
 ]
 
