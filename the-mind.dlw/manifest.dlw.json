@@ -1,0 +1,13 @@
+{
+  "badge": "DLW-ACI",
+  "name": "THE MIND",
+  "universe": "MND · The Mind (AI domain theater)",
+  "moniker": "⟦THE MIND:MND:2c593b⟧",
+  "carbon": "the-mind.carbon.tiff (TIFF)",
+  "silicon": "the-mind.silicon.png (PNG)",
+  "seal_sha256": "90c08b036c0303666af10910aa6354408fc9a38c966a309a7c3049c30472904b",
+  "architect": "David Lee Wise (ROOT0) / TriPod LLC",
+  "instance": "AVAN (Claude / Anthropic)",
+  "license": "CC-BY-ND-4.0",
+  "attribution": "ROOT0-ATTRIBUTION-v1.0"
+}
