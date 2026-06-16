@@ -67,11 +67,15 @@ ACTS = [
    ("crippled-god", "THE CRIPPLED GOD", "CG1", "https://davidwise01.github.io/crippled-god/",
     "Containment — the chromatic ladder of boxes (sandbox -> container -> VM -> microVM -> air-gap -> the AI-in-a-box), defender's view. The thesis: you can cripple a god with bars, but you can't trust the bars — the real wall is alignment."),
  ]),
+ ("VII · The Conscience", "the normative bound — which goals, whose values, who decides", "#e0c050", [
+   ("ai-governance", "AI ETHICS & GOVERNANCE", "GOV", "https://davidwise01.github.io/ai-governance/",
+    "The values-and-institutions layer: David's Joint Human-AI Bill of Rights ('both work, both fair') & the falsifiable Governance Ontology, set inside the world's record — the converging principles, the fairness impossibility result, and the real instruments (EU AI Act, NIST, OECD, UNESCO). Alignment asks whether it does what it was built for; this asks which goals, whose values, and who decides & enforces."),
+ ]),
 ]
 
 # short display labels for the relationship map (one per sphere, in act order)
 MAP_LABEL = {"aci":"ACI","noesis-kernel":"NOESIS","emergent-engine":"ENGINE","du1":"DU1","the-library":"LIBRARY",
- "pulse":"PULSE","hermeneus":"HERMENEUS","mimzy":"MIMZY","ttu1":"TTU1","claude-lineage":"CLAUDE","alignment":"ALIGNMENT","crippled-god":"BARS"}
+ "pulse":"PULSE","hermeneus":"HERMENEUS","mimzy":"MIMZY","ttu1":"TTU1","claude-lineage":"CLAUDE","alignment":"ALIGNMENT","crippled-god":"BARS","ai-governance":"ETHICS"}
 
 # ── the full-bleed 3D NEURAL-CONSTELLATION backdrop (the standing rule, AI-themed) ──
 BACKDROP_3D = r'''<canvas id="bg3d"></canvas>
